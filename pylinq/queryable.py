@@ -11,7 +11,7 @@ This module implements the Queryable class for querying iterables using the LINQ
 from collections import Iterable
 from copy import copy
 from functools import reduce
-from itertools import zip_longest
+from itertools import tee, zip_longest
 from .query import Query
 
 
@@ -27,7 +27,8 @@ class _Queryable(object):
         return clone
 
     def __iter__(self):
-        iterator = iter(self.iterable)
+        self.iterable, iterable_copy = tee(self.iterable)
+        iterator = iter(iterable_copy)
         for query in self._queries:
             iterator = Query.parse(iterator, query)
         for item in iterator:
