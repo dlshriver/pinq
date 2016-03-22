@@ -8,7 +8,7 @@ This module implements the Queryable class for querying iterables using the LINQ
 :license: MIT, see LICENSE for more details.
 """
 
-from collections import Iterable
+from collections import Iterable, Iterator
 from copy import copy
 from functools import reduce
 from itertools import tee, zip_longest
@@ -22,13 +22,17 @@ class _Queryable(object):
         self._queries = []
 
     def _clone(self):
-        clone = _Queryable(self.iterable)
+        self.iterable, iterable_copy = tee(self.iterable)
+        clone = _Queryable(iterable_copy)
         clone._queries = copy(self._queries)
         return clone
 
     def __iter__(self):
-        self.iterable, iterable_copy = tee(self.iterable)
-        iterator = iter(iterable_copy)
+        if isinstance(self.iterable, Iterator):
+            self.iterable, iterable_copy = tee(self.iterable)
+            iterator = iterable_copy
+        else:
+            iterator = iter(self.iterable)
         for query in self._queries:
             iterator = Query.parse(iterator, query)
         for item in iterator:
