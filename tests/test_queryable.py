@@ -6,6 +6,11 @@ import unittest
 import pylinq
 
 
+def generator(num):
+    for i in range(num):
+        yield i
+
+
 class queryable_tests(unittest.TestCase):
 
     def setUp(self):
@@ -18,6 +23,19 @@ class queryable_tests(unittest.TestCase):
             1, 1, 9], [4, 3, 2], [9, 5, 7], [8, 6, 2], [9, 4, 5]])
         self.queryable_6 = pylinq.as_queryable(
             [[1, [1, 2, 3]], [2, [4, 5, 6]], [3, [7, 8, 9]]])
+        self.queryable_7 = pylinq.as_queryable(generator(1000000))
+
+    def test_multiple_enumerate(self):
+        self.assertEqual(self.queryable_7.where(
+            lambda x: x == 7).to_list(), [7])
+        self.assertEqual(self.queryable_7.where(
+            lambda x: x == 8).to_list(), [8])
+        self.assertEqual(self.queryable_7.where(
+            lambda x: x == 15).to_list(), [15])
+        self.assertEqual(self.queryable_7.where(
+            lambda x: x % 2 == 0).select(lambda x: x / 2).to_list(), [i for i in range(500000)])
+        self.assertEqual(self.queryable_7.where(
+            lambda x: x % 2 == 0).to_list(), [i * 2 for i in range(500000)])
 
     def test_aggregate(self):
         self.assertEqual(self.queryable_2.aggregate(lambda x, y: x + y), 50)
@@ -207,6 +225,8 @@ class queryable_tests(unittest.TestCase):
             self.queryable_5, key2)), [[1, 2, 3]])
         self.assertEqual(list(self.queryable_2.intersect(
             self.queryable_4, key1, key2)), [1, 3, 2])
+        self.assertEqual(list(self.queryable_7.select(
+            lambda x: x % 5).intersect(self.queryable_1)), [])
         with self.assertRaises(TypeError):
             self.queryable_1.intersect(100)
         with self.assertRaises(TypeError):

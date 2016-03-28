@@ -101,7 +101,6 @@ class _Query(object):
                 key = query[2](item)
                 if key in seen:
                     return True
-                seen[key] = 1
                 return False
             iterator = filter(comparator, iterator)
         elif query[0] == self.join:

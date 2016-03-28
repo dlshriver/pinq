@@ -22,9 +22,7 @@ class _Queryable(object):
         self._queries = []
 
     def _clone(self):
-        self.iterable, iterable_copy = tee(self.iterable)
-        clone = _Queryable(iterable_copy)
-        clone._queries = copy(self._queries)
+        clone = _Queryable(iter(self))
         return clone
 
     def __iter__(self):
@@ -432,9 +430,8 @@ class _Queryable(object):
             raise TypeError("Value for argument 'condition' is not callable.")
         return self._clone()._take_while(condition)
 
-    def _then_by(self, key):
-        old_orderby = self._queries[-1]
-        self._queries[-1] = (Query.orderby, key)
+    def _then_by(self, old_orderby, key):
+        self._queries.append((Query.orderby, key))
         self._queries.append(old_orderby)
         return self
 
@@ -444,11 +441,10 @@ class _Queryable(object):
         if (len(self._queries) == 0 or
                 (self._queries[-1][0] & (Query.orderby | Query.orderbydesc)) == 0):
             raise ValueError("Cannot call 'then_by' on unordered Queryable.")
-        return self._clone()._then_by(key)
+        return self._clone()._then_by(self._queries[-1], key)
 
-    def _then_by_descending(self, key):
-        old_orderby = self._queries[-1]
-        self._queries[-1] = (Query.orderbydesc, key)
+    def _then_by_descending(self, old_orderby, key):
+        self._queries.append((Query.orderbydesc, key))
         self._queries.append(old_orderby)
         return self
 
@@ -458,7 +454,7 @@ class _Queryable(object):
         if (len(self._queries) == 0 or
                 (self._queries[-1][0] & (Query.orderby | Query.orderbydesc)) == 0):
             raise ValueError("Cannot call 'then_by' on unordered Queryable.")
-        return self._clone()._then_by_descending(key)
+        return self._clone()._then_by_descending(self._queries[-1], key)
 
     def to_dictionary(self, key_selector, value_selector=None):
         if not callable(key_selector):
