@@ -18,6 +18,7 @@ Easy
 ~~~~
 
 To install pylinq, use pip:
+
 .. code-block:: bash
 
     $ pip install pylinq
@@ -26,11 +27,13 @@ From Source
 ~~~~~~~~~~~
 
 To install pylinq from source, download the `source`_ and extract the contents. Then run:
+
 .. code-block:: bash
 
     $ python setup.py install
 
 To run the tests, run the following command from the source directory:
+
 .. code-block:: bash
     
     $ python tests
@@ -40,8 +43,8 @@ Documentation
 
 Coming soon!
 
-How to Contribute
------------------
+Contribute
+----------
 
 #. Check for open issues or open a new issue.
 #. Fork `the repository`_ on GitHub to start making changes.
