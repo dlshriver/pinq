@@ -1,8 +1,12 @@
+"""
+pylinq setup script.
+"""
+
 from distutils.core import setup
 
 setup(
     name='pylinq',
-    version='0.1',
+    version='0.2',
     description='LINQ for python.',
     license='MIT',
     author='David Shriver',

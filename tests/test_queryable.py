@@ -6,11 +6,6 @@ import unittest
 import pylinq
 
 
-def generator(num):
-    for i in range(num):
-        yield i
-
-
 class queryable_tests(unittest.TestCase):
 
     def setUp(self):
@@ -23,6 +18,10 @@ class queryable_tests(unittest.TestCase):
             1, 1, 9], [4, 3, 2], [9, 5, 7], [8, 6, 2], [9, 4, 5]])
         self.queryable_6 = pylinq.as_queryable(
             [[1, [1, 2, 3]], [2, [4, 5, 6]], [3, [7, 8, 9]]])
+
+        def generator(num):
+            for i in range(num):
+                yield i
         self.queryable_7 = pylinq.as_queryable(generator(1000000))
 
     def test_multiple_enumerate(self):
@@ -111,6 +110,8 @@ class queryable_tests(unittest.TestCase):
         self.assertEqual(list(self.queryable_1.default_if_empty()), [None])
         self.assertEqual(list(self.queryable_2.default_if_empty()),
                          [1, 3, 5, 9, 10, 13, 7, 2])
+        self.assertEqual(
+            list(self.queryable_1.default_if_empty(default_value=0)), [0])
 
     def test_difference(self):
         self.assertEqual(
@@ -122,7 +123,7 @@ class queryable_tests(unittest.TestCase):
         self.assertEqual(list(self.queryable_4.difference(
             self.queryable_2, lambda x: x[1], lambda x: x)), [[3, 4, 5], [2, 8, 10]])
         self.assertEqual(list(self.queryable_5.difference(
-            self.queryable_4, lambda x: x[0])), [[4, 4, 4], [9, 5, 7], [8, 6, 2]])
+            self.queryable_4, lambda x: x[0], lambda x: x[0])), [[4, 4, 4], [9, 5, 7], [8, 6, 2]])
         with self.assertRaises(TypeError):
             self.queryable_1.difference(0)
         with self.assertRaises(TypeError):
@@ -222,7 +223,7 @@ class queryable_tests(unittest.TestCase):
         self.assertEqual(list(self.queryable_3.intersect(
             self.queryable_2)), [1, 2, 3, 5, 7, 9, 10, 13])
         self.assertEqual(list(self.queryable_4.intersect(
-            self.queryable_5, key2)), [[1, 2, 3]])
+            self.queryable_5, key2, key2)), [[1, 2, 3]])
         self.assertEqual(list(self.queryable_2.intersect(
             self.queryable_4, key1, key2)), [1, 3, 2])
         self.assertEqual(list(self.queryable_7.select(
@@ -478,10 +479,10 @@ class queryable_tests(unittest.TestCase):
             1, 3, 5, 9, 10, 13, 7, 2])
         self.assertEqual(list(self.queryable_2.union(self.queryable_2)), [
             1, 3, 5, 9, 10, 13, 7, 2])
-        self.assertEqual(list(self.queryable_4.union(self.queryable_5, lambda x: x[0])), [
-            [1, 2, 3], [3, 4, 5], [2, 8, 10], [4, 4, 4], [9, 5, 7], [8, 6, 2]])
-        self.assertEqual(list(self.queryable_5.union(self.queryable_4, lambda x: x[0])), [
-            [1, 2, 3], [4, 4, 4], [9, 5, 7], [8, 6, 2], [3, 4, 5], [2, 8, 10]])
+        self.assertEqual(list(self.queryable_4.union(self.queryable_5, lambda x: x[0], lambda x: x[
+            0])), [[1, 2, 3], [3, 4, 5], [2, 8, 10], [4, 4, 4], [9, 5, 7], [8, 6, 2]])
+        self.assertEqual(list(self.queryable_5.union(self.queryable_4, lambda x: x[0], lambda x: x[
+            0])), [[1, 2, 3], [4, 4, 4], [9, 5, 7], [8, 6, 2], [3, 4, 5], [2, 8, 10]])
         self.assertEqual(list(self.queryable_4.union(self.queryable_2, lambda x: x[
             0], lambda x: x)), [[1, 2, 3], [3, 4, 5], [2, 8, 10], 5, 9, 10, 13, 7])
         with self.assertRaises(TypeError):
