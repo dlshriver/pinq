@@ -145,7 +145,7 @@ class queryable_tests(unittest.TestCase):
     def test_empty(self):
         self.assertTrue(self.queryable_1.empty())
         self.assertFalse(self.queryable_4.empty())
-    
+
     def test_except_values(self):
         self.assertEqual(
             list(self.queryable_1.except_values(self.queryable_2)), [])
