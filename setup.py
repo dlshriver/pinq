@@ -6,7 +6,7 @@ from distutils.core import setup
 
 setup(
     name='pylinq',
-    version='0.2',
+    version='0.2.1',
     description='LINQ for python.',
     license='MIT',
     author='David Shriver',

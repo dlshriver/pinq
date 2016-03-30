@@ -626,8 +626,11 @@ class Queryable(object):
             raise TypeError("Value for argument 'iterable' is not iterable.")
         if not callable(comparer):
             raise TypeError("Value for argument 'comparer' is not callable.")
-        for item1, item2 in zip_longest(self, iterable, fillvalue=ValueError):
-            if isinstance(item1, ValueError) or isinstance(item2, ValueError):
+
+        class _IterableEnd:
+            pass
+        for item1, item2 in zip_longest(self, iterable, fillvalue=_IterableEnd()):
+            if isinstance(item1, _IterableEnd) or isinstance(item2, _IterableEnd):
                 return False
             if not comparer(item1, item2):
                 return False

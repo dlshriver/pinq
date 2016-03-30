@@ -60,8 +60,8 @@ class _Query(object):
         elif query[0] == self.orderbydesc:
             iterator = sorted(iterator, key=query[1], reverse=True)
         elif query[0] == self.groupby:
-            iterator = groupby(
-                sorted(iterator, key=query[1]), key=query[1])
+            iterator = map(lambda x: (x[0], list(x[1])), groupby(
+                sorted(iterator, key=query[1]), key=query[1]))
         elif query[0] == self.selectmany:
             iterator = chain.from_iterable(map(query[1], iterator))
         elif query[0] == self.reverse:
