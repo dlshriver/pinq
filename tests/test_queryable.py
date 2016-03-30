@@ -145,6 +145,23 @@ class queryable_tests(unittest.TestCase):
     def test_empty(self):
         self.assertTrue(self.queryable_1.empty())
         self.assertFalse(self.queryable_4.empty())
+    
+    def test_except_values(self):
+        self.assertEqual(
+            list(self.queryable_1.except_values(self.queryable_2)), [])
+        self.assertEqual(list(self.queryable_2.except_values(
+            self.queryable_1)), [1, 3, 5, 9, 10, 13, 7, 2])
+        self.assertEqual(list(self.queryable_4.except_values(
+            self.queryable_2, lambda x: x[0], lambda x: x)), [])
+        self.assertEqual(list(self.queryable_4.except_values(
+            self.queryable_2, lambda x: x[1], lambda x: x)), [[3, 4, 5], [2, 8, 10]])
+        self.assertEqual(list(self.queryable_5.except_values(
+            self.queryable_4, lambda x: x[0], lambda x: x[0])), [[4, 4, 4], [9, 5, 7], [8, 6, 2]])
+        self.assertRaises(TypeError, self.queryable_1.except_values, 0)
+        self.assertRaises(
+            TypeError, self.queryable_1.except_values, self.queryable_1, 0)
+        self.assertRaises(TypeError, self.queryable_1.except_values,
+                          self.queryable_1, lambda x: x, 0)
 
     def test_first(self):
         condition = lambda x: x > 200
@@ -328,6 +345,7 @@ class queryable_tests(unittest.TestCase):
             [1, 3, 2], comparer=lambda x, y: x[0] == y))
         self.assertFalse(self.queryable_4.sequence_equal(
             [10, 40, 20], comparer=lambda x, y: x[0] == y))
+        self.assertFalse(self.queryable_2.sequence_equal([1]))
         self.assertRaises(TypeError, self.queryable_2.sequence_equal, 100)
         self.assertRaises(TypeError, self.queryable_4.sequence_equal, [
             1, 2, 3], comparer=100)
