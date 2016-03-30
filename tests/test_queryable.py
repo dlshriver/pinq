@@ -415,11 +415,12 @@ class queryable_tests(unittest.TestCase):
             ValueError, self.queryable_5.then_by_descending, key2)
 
     def test_to_dictionary(self):
-        self.assertDictEqual(self.queryable_1.to_dictionary(lambda x: x), {})
-        self.assertDictEqual(self.queryable_2.to_dictionary(
-            lambda x: x * x), {1: 1, 9: 3, 25: 5, 81: 9, 100: 10, 169: 13, 49: 7, 4: 2})
-        self.assertDictEqual(self.queryable_2.to_dictionary(lambda x: x, str), {
-            1: "1", 3: "3", 5: "5", 9: "9", 10: "10", 13: "13", 7: "7", 2: "2"})
+        self.assertEqual(
+            sorted(self.queryable_1.to_dictionary(lambda x: x).items()), sorted({}.items()))
+        self.assertEqual(sorted(self.queryable_2.to_dictionary(lambda x: x * x).items()),
+                         sorted({1: 1, 9: 3, 25: 5, 81: 9, 100: 10, 169: 13, 49: 7, 4: 2}.items()))
+        self.assertEqual(sorted(self.queryable_2.to_dictionary(lambda x: x, str).items()), sorted(
+            {1: "1", 3: "3", 5: "5", 9: "9", 10: "10", 13: "13", 7: "7", 2: "2"}.items()))
         self.assertRaises(TypeError, self.queryable_3.to_dictionary, 100)
         self.assertRaises(
             TypeError, self.queryable_3.to_dictionary, lambda x: x, 100)
