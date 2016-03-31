@@ -1,5 +1,5 @@
-pylinq
-======
+Queryable
+=========
 
 .. image:: https://travis-ci.org/dlshriver/pylinq.svg?branch=master
     :alt: Build Status
@@ -9,7 +9,7 @@ pylinq
     :alt: Coverage Status
     :target: https://coveralls.io/github/dlshriver/pylinq?branch=master
 
-**pylinq** is a python implementation of the Language Integrated Query (LINQ) framework's method syntax api.
+Queryable is a partial python implementation of the Language Integrated Query (LINQ) framework's method syntax api.
 
 Installation
 ------------
@@ -17,16 +17,16 @@ Installation
 Easy
 ~~~~
 
-To install pylinq, use pip:
+To install Queryable, use pip:
 
 .. code-block:: bash
 
-    $ pip install pylinq
+    $ pip install queryable
 
 From Source
 ~~~~~~~~~~~
 
-To install pylinq from source, download the `source`_ and extract the contents. Then run:
+To install Queryable from source, download the `source`_ and extract the contents. Then run:
 
 .. code-block:: bash
 
@@ -51,5 +51,5 @@ Contribute
 #. Write a test that shows the bug was fixed or the feature works as expected.
 #. Send a pull request
 
-.. _`the repository`: http://github.com/dlshriver/pylinq
-.. _`source`: https://github.com/dlshriver/pylinq/archive/master.zip
+.. _`the repository`: http://github.com/dlshriver/Queryable
+.. _`source`: https://github.com/dlshriver/Queryable/archive/master.zip
