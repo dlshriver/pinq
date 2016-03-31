@@ -3,26 +3,26 @@ Tests for queryables.
 """
 
 import unittest
-import pylinq
+import pinq
 
 
 class queryable_tests(unittest.TestCase):
 
     def setUp(self):
-        self.queryable_1 = pylinq.as_queryable([])
-        self.queryable_2 = pylinq.as_queryable([1, 3, 5, 9, 10, 13, 7, 2])
-        self.queryable_3 = pylinq.as_queryable([i for i in range(1000)])
-        self.queryable_4 = pylinq.as_queryable(
+        self.queryable_1 = pinq.as_queryable([])
+        self.queryable_2 = pinq.as_queryable([1, 3, 5, 9, 10, 13, 7, 2])
+        self.queryable_3 = pinq.as_queryable([i for i in range(1000)])
+        self.queryable_4 = pinq.as_queryable(
             ([1, 2, 3], [3, 4, 5], [2, 8, 10]))
-        self.queryable_5 = pylinq.as_queryable([[1, 2, 3], [1, 4, 5], [4, 4, 4], [
+        self.queryable_5 = pinq.as_queryable([[1, 2, 3], [1, 4, 5], [4, 4, 4], [
             1, 1, 9], [4, 3, 2], [9, 5, 7], [8, 6, 2], [9, 4, 5]])
-        self.queryable_6 = pylinq.as_queryable(
+        self.queryable_6 = pinq.as_queryable(
             [[1, [1, 2, 3]], [2, [4, 5, 6]], [3, [7, 8, 9]]])
 
         def generator(num):
             for i in range(num):
                 yield i
-        self.queryable_7 = pylinq.as_queryable(generator(1000000))
+        self.queryable_7 = pinq.as_queryable(generator(1000000))
 
     def test_multiple_enumerate(self):
         self.assertEqual(self.queryable_7.where(
@@ -145,7 +145,7 @@ class queryable_tests(unittest.TestCase):
     def test_empty(self):
         self.assertTrue(self.queryable_1.empty())
         self.assertFalse(self.queryable_4.empty())
-    
+
     def test_except_values(self):
         self.assertEqual(
             list(self.queryable_1.except_values(self.queryable_2)), [])

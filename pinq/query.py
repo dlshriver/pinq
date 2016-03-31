@@ -1,6 +1,6 @@
 """
-pylinq.query
-~~~~~~~~~~~~
+pinq.query
+~~~~~~~~~~
 
 This module implements the query functions.
 
