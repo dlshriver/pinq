@@ -1,13 +1,13 @@
 pinq
 ====
 
-.. image:: https://travis-ci.org/dlshriver/pylinq.svg?branch=master
+.. image:: https://travis-ci.org/dlshriver/pinq.svg?branch=master
     :alt: Build Status
-    :target: https://travis-ci.org/dlshriver/pylinq
+    :target: https://travis-ci.org/dlshriver/pinq
 
-.. image:: https://coveralls.io/repos/github/dlshriver/pylinq/badge.svg?branch=master
+.. image:: https://coveralls.io/repos/github/dlshriver/pinq/badge.svg?branch=master
     :alt: Coverage Status
-    :target: https://coveralls.io/github/dlshriver/pylinq?branch=master
+    :target: https://coveralls.io/github/dlshriver/pinq?branch=master
 
 **pinq** is a partial python implementation of the Language Integrated Query (LINQ) framework's method syntax api.
 
