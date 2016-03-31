@@ -1,5 +1,5 @@
-Queryable
-=========
+pinq
+====
 
 .. image:: https://travis-ci.org/dlshriver/pylinq.svg?branch=master
     :alt: Build Status
@@ -9,7 +9,7 @@ Queryable
     :alt: Coverage Status
     :target: https://coveralls.io/github/dlshriver/pylinq?branch=master
 
-Queryable is a partial python implementation of the Language Integrated Query (LINQ) framework's method syntax api.
+**pinq** is a partial python implementation of the Language Integrated Query (LINQ) framework's method syntax api.
 
 Installation
 ------------
@@ -17,16 +17,16 @@ Installation
 Easy
 ~~~~
 
-To install Queryable, use pip:
+To install pinq, use pip:
 
 .. code-block:: bash
 
-    $ pip install queryable
+    $ pip install pinq
 
 From Source
 ~~~~~~~~~~~
 
-To install Queryable from source, download the `source`_ and extract the contents. Then run:
+To install pinq from source, download the `source`_ and extract the contents. Then run:
 
 .. code-block:: bash
 
@@ -51,5 +51,5 @@ Contribute
 #. Write a test that shows the bug was fixed or the feature works as expected.
 #. Send a pull request
 
-.. _`the repository`: http://github.com/dlshriver/Queryable
-.. _`source`: https://github.com/dlshriver/Queryable/archive/master.zip
+.. _`the repository`: http://github.com/dlshriver/pinq
+.. _`source`: https://github.com/dlshriver/pinq/archive/master.zip

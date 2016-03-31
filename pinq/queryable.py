@@ -1,6 +1,6 @@
 """
-pylinq.queryable
-~~~~~~~~~~~~~~~~
+pinq.queryable
+~~~~~~~~~~~~~~
 
 This module implements the Queryable class for querying iterables using the LINQ api.
 

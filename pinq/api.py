@@ -1,8 +1,8 @@
 """
-pylinq.api
-~~~~~~~~~~
+pinq.api
+~~~~~~~~
 
-This module implements the pylinq api.
+This module implements the pinq api.
 
 :copyright: (c) 2016 by David Shriver.
 :license: MIT, see LICENSE for more details.
@@ -23,8 +23,8 @@ def as_queryable(iterable):
 
     Usage::
 
-      >>> import pylinq
-      >>> queryable = pylinq.as_queryable(range(100))
+      >>> import pinq
+      >>> queryable = pinq.as_queryable(range(100))
       range(0, 100)
     """
     if not isinstance(iterable, Iterable):
