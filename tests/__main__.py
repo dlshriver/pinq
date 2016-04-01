@@ -1,5 +1,10 @@
-import unittest
-from test_api import *
-from test_queryable import *
+"""
+pinq.tests
+~~~~~~~~~~~~
 
-unittest.main()
+Loads all tests for pinq and runs them.
+"""
+
+import unittest
+
+unittest.TextTestRunner(verbosity=1).run(unittest.TestLoader().discover(".\\tests"))

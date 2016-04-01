@@ -8,7 +8,7 @@ This module implements the pinq api.
 :license: MIT, see LICENSE for more details.
 """
 
-from collections import Iterable
+from collections import Iterable, Iterator
 from .queryable import Queryable
 
 
@@ -27,6 +27,8 @@ def as_queryable(iterable):
       >>> queryable = pinq.as_queryable(range(100))
       range(0, 100)
     """
-    if not isinstance(iterable, Iterable):
-        raise TypeError("Object must be iterable.")
-    return Queryable(iterable)
+    if isinstance(iterable, Iterator):
+        return Queryable(iterable)
+    elif isinstance(iterable, Iterable):
+        return Queryable(iter(iterable))
+    raise TypeError("Object must be iterable.")
