@@ -257,7 +257,7 @@ class Queryable(object):
 
         @lru_cache(1, False)
         def _seen():
-            return {key_selector(element): 1 for element in other}
+            return dict([(key_selector(element), 1) for element in other])
 
         def _removed(value):
             seen = _seen()
