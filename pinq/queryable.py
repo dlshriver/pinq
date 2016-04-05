@@ -396,7 +396,7 @@ class Queryable(object):
 
         @lru_cache(1, False)
         def _other_set():
-            return {key_selector(element): 1 for element in other}
+            return dict([(key_selector(element), 1) for element in other])
 
         seen = {}
 

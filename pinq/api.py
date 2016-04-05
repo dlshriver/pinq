@@ -25,7 +25,6 @@ def as_queryable(iterable):
 
       >>> import pinq
       >>> queryable = pinq.as_queryable(range(100))
-      range(0, 100)
     """
     if isinstance(iterable, Iterator):
         return Queryable(iterable)
