@@ -9,10 +9,7 @@ This module implements the Queryable class for querying iterables using the LINQ
 """
 
 from __future__ import division
-from collections import defaultdict, Iterable
-from functools import lru_cache, reduce
-from itertools import chain, dropwhile, groupby, islice, takewhile, tee, zip_longest
-from operator import eq
+from .compat import *
 from .predicates import true
 from .transforms import identity, select_i
 
