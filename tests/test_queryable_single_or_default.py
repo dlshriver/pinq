@@ -26,11 +26,11 @@ class queryable_single_or_default_tests(unittest.TestCase):
         self.assertEqual(self.queryable1.single_or_default(
             lambda x: x > 10), None)
 
-    def test_single_or_default_empty_sequence(self):
-        self.assertEquals(
+    def test_single_or_default_empty_sequence_with_default_value(self):
+        self.assertEqual(
             self.queryable0.single_or_default(default_value=-1), -1)
 
-    def test_single_or_default_no_satisfying(self):
+    def test_single_or_default_no_satisfying_with_default_value(self):
         self.assertEqual(self.queryable1.single_or_default(
             lambda x: x > 10, -1), -1)
 
