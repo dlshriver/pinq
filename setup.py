@@ -6,7 +6,7 @@ from distutils.core import setup
 
 setup(
     name='pinq',
-    version='1.0.0',
+    version='0.2.0',
     description='LINQ for python.',
     license='MIT',
     author='David Shriver',
