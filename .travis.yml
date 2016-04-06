@@ -9,5 +9,5 @@ install:
   - "pip install coverage"
   - "pip install coveralls"
   - "python setup.py install"
-script: coverage run --branch --include=*pinq* tests
+script: coverage run --branch --include=*pinq* --omit=*tests* tests
 after_success: coveralls
