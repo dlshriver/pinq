@@ -13,6 +13,7 @@ RELEASE HISTORY
     - Static docs (not done)
     
 * Refactor
+
     - Add more tests and split old tests into distinct modules
     
     - Add `OrderedQueryable`
