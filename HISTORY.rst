@@ -3,14 +3,14 @@
 RELEASE HISTORY
 ---------------
 
-0.1.1 (???)
+0.1.1 (08-04-2016)
 +++++++++++
 
 * Added documentation
 
     - History
     
-    - Static docs (not done)
+    - Static docs for API
     
 * Refactor
 
