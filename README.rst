@@ -54,4 +54,4 @@ Contribute
 #. Send a pull request
 
 .. _`the repository`: http://github.com/dlshriver/pinq
-.. _`source`: https://github.com/dlshriver/pinq/archive/0.1.0.tar.gz
+.. _`source`: https://github.com/dlshriver/pinq/archive/0.1.1.tar.gz
