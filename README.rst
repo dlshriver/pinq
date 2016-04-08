@@ -41,7 +41,9 @@ To run the tests, run the following command from the source directory:
 Documentation
 -------------
 
-Coming soon!
+*Better documentation is currently under development.*
+
+The pinq api documentation can be found `here <https://github.com/dlshriver/pinq/tree/master/docs>`_.
 
 Contribute
 ----------
