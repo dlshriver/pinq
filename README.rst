@@ -43,7 +43,7 @@ Documentation
 
 *Better documentation is currently under development.*
 
-The pinq api documentation can be found `here <https://github.com/dlshriver/pinq/tree/master/docs>`_.
+The pinq api documentation can be found `here <https://pinq.readthedocs.org>`_.
 
 Contribute
 ----------
